@@ -21,3 +21,4 @@ while True:
             pygame.quit()
     gameDisplay.blit(img1, [100, 120])	    
     pygame.display.update()
+ 
