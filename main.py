@@ -56,6 +56,8 @@ def random_word():
     print(guessed_word)
     return guessed_word
 
+def spaced_word():
+    pass
 
 def play():
     pass
