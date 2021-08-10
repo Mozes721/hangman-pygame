@@ -1,7 +1,7 @@
 import pygame
 pygame.init()
 w = 480
-h = 700
+h = 700  
 
 light_slat = (119,136,153)
 bright_green = (40, 100, 0)
