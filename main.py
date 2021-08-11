@@ -59,7 +59,6 @@ def redraw_window():
     #         display_word += letter + ' '
     #     else:
     #         display_word += '_ '
-    # text = guess_font.render(display_word, 1, BLACK)
     word_completion = "_ " * len(word)
     #word_render = guess_font.render(word_completion, 1, BLACK)
     #rect = word_render.get_rect()
@@ -70,8 +69,6 @@ def redraw_window():
 
     #gameDisplay.blit(word_render, [100, 500])
     
-    
-
     pygame.display.update()
 
 def random_word():
