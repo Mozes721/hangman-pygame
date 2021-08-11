@@ -51,23 +51,18 @@ def redraw_window():
     
     #img of hangman
     gameDisplay.blit(hangmanImgs[limbs], [100, 120])
-    #gameDisplay.blit(word, [100, 400])
-    #draw word
-    # display_word = ''
-    # for letter in range(len(word):
-    #     if letter in guesses:
-    #         display_word += letter + ' '
-    #     else:
-    #         display_word += '_ '
-    word_completion = "_ " * len(word)
-    #word_render = guess_font.render(word_completion, 1, BLACK)
-    #rect = word_render.get_rect()
 
-    TextSurf, TextRect = text_objects(word_completion, guess_font)
+    #draw word
+    display_word = ''
+    for letter in word:
+        if letter in guesses:
+            display_word += letter + ' '
+        else:
+            display_word += '_ '
+
+    TextSurf, TextRect = text_objects(display_word, guess_font)
     TextRect.center = (350, 400)
     gameDisplay.blit(TextSurf, TextRect)
-
-    #gameDisplay.blit(word_render, [100, 500])
     
     pygame.display.update()
 
