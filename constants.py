@@ -15,7 +15,7 @@ word = ''
 guesses = []
 limbs = 0
 btn_font = pygame.font.SysFont("Arial", 20)
-guess_font = pygame.font.SysFont("monospace", 24)
+guess_font = pygame.font.SysFont("monospace", 60)
 lost_font = pygame.font.SysFont('arial', 45)
 
 

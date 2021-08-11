@@ -16,7 +16,7 @@ pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 650, 430))
 
 ###text object render
 def text_objects(text, font):
-    textSurface = font.render(text, True, BLACK)
+    textSurface = font.render(text, True, WHITE)
     return textSurface, textSurface.get_rect()
 
 #game text display
@@ -48,30 +48,64 @@ def redraw_window():
     global guesses
     global limbs
     global hangmanImgs
+    
+    #img of hangman
     gameDisplay.blit(hangmanImgs[limbs], [100, 120])
+    #gameDisplay.blit(word, [100, 400])
+    #draw word
+    # display_word = ''
+    # for letter in range(len(word):
+    #     if letter in guesses:
+    #         display_word += letter + ' '
+    #     else:
+    #         display_word += '_ '
+    # text = guess_font.render(display_word, 1, BLACK)
+    word_completion = "_ " * len(word)
+    #word_render = guess_font.render(word_completion, 1, BLACK)
+    #rect = word_render.get_rect()
 
-def random_word():
-    global guesses
-    guessed_word = random.choice(open('words.txt').read().split()).strip()
-    print(guessed_word)
-    return guessed_word
+    TextSurf, TextRect = text_objects(word_completion, guess_font)
+    TextRect.center = (350, 400)
+    gameDisplay.blit(TextSurf, TextRect)
 
-def spaced_word():
-    pass
-
-def play():
-    pass
+    #gameDisplay.blit(word_render, [100, 500])
+    
     
 
+    pygame.display.update()
+
+def random_word():
+    guessed_word = random.choice(open('words.txt').read().split()).strip()
+    return guessed_word
+
+
+def finished_game():
+    pass
+
+def play_again():
+    pass
+    
 
 def exit():
     pygame.quit()
 
 
+def reset():
+    global limbs
+    global guesses
+    global word
+
+    limbs = 0
+    guesses = []
+    word = random_word()
+
+
+word = random_word()
 inGame = True
-command = []
+
+
+print(word)
 while inGame:
-    random_word()
     redraw_window()
     pygame.time.delay(10)
     press=pygame.key.get_pressed()
@@ -80,12 +114,15 @@ while inGame:
             pygame.quit()
         elif event.type == pygame.KEYDOWN:
             if event.key in range(pygame.K_a, pygame.K_z + 1):
-                command += event.unicode
-            print(command)
-
+                if event.unicode in guesses:
+                    print("You already pressed it!")
+                else:
+                    guesses += event.unicode
+            print(guesses)
+    # gameDisplay.blit(word, (200, 300))
             # button("PLAY AGAIN?", 400, 100, 150, 50, light_slat, bright_green, play)
             # button("EXIT", 400, 200, 150, 50, light_slat, dark_red, exit)
 
     	    
-    pygame.display.update()
+    
  
