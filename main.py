@@ -59,6 +59,7 @@ def redraw_window():
             display_word += letter + ' '
         else:
             display_word += '_ '
+            
 
     TextSurf, TextRect = text_objects(display_word, guess_font)
     TextRect.center = (350, 400)
