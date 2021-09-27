@@ -72,7 +72,7 @@ def random_word():
     guessed_word = random.choice(open('words.txt').read().split()).strip()
     return guessed_word
 
-
+ 
 def finished_game():
     pass
 
