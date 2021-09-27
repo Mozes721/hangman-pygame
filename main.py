@@ -16,12 +16,13 @@ pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 650, 430))
 
 ###text object render
 def text_objects(text, font):
-    textSurface = font.render(text, True, WHITE)
+    textSurface = font.render(text, True, BLACK)
     return textSurface, textSurface.get_rect()
+
 
 #game text display
 def game_texts(text, x, y):
-    TextSurf, TextRect = text_objects(text)
+    TextSurf, TextRect = text_objects(text, txt_font)
     TextRect.center = (x, y)
     gameDisplay.blit(TextSurf, TextRect)
 
@@ -107,8 +108,15 @@ while inGame:
             pygame.quit()
         elif event.type == pygame.KEYDOWN:
             if event.key in range(pygame.K_a, pygame.K_z + 1):
+                if event.unicode not in word:
+                    game_texts("The letter %s is not in the word" % event.unicode , 450, 230)
+                    limbs += 1
+                    time.sleep(3)
+                    pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 600, 230))
                 if event.unicode in guesses:
-                    print("You already pressed it!")
+                    game_texts("You already pressed it!", 450, 230)
+                    time.sleep(3)
+                    pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 600, 230))
                 else:
                     guesses += event.unicode
             print(guesses)
@@ -116,6 +124,3 @@ while inGame:
             # button("PLAY AGAIN?", 400, 100, 150, 50, light_slat, bright_green, play)
             # button("EXIT", 400, 200, 150, 50, light_slat, dark_red, exit)
 
-    	    
-    
- 
