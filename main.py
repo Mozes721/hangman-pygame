@@ -32,7 +32,7 @@ def finish_text(text, x, y):
     TextSurf, TextRect = text_objects(text, finish_font)
     TextRect.center = (x, y)
     gameDisplay.blit(TextSurf, TextRect)
-
+ 
     pygame.display.update()    
 #button display
 def button(msg, x, y, w, h, ic, ac, action=None):
