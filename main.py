@@ -83,7 +83,7 @@ def random_word():
     guessed_word = random.choice(open('words.txt').read().split()).strip()
     return guessed_word
 
- 
+
 def finished_game():
     won = True
     for ltr in word:
@@ -92,33 +92,32 @@ def finished_game():
     
     if won:
         finish_text("You Won :)", 400, 150)
-        time.sleep(3)
+        time.sleep(2)
         pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 650, 430))
-        button("PLAY AGAIN?", 400, 100, 150, 50, light_slat, bright_green, reset)
+        #button("PLAY AGAIN?", 400, 100, 150, 50, light_slat, bright_green, reset)
         button("EXIT", 400, 200, 150, 50, light_slat, dark_red, sys.exit())
        
 
     if limbs == 6:
         finish_text("You Lost :(", 400, 150)
-        time.sleep(3)
+        time.sleep(2)
         pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 650, 430))
-        button("PLAY AGAIN?", 400, 100, 150, 50, light_slat, bright_green, reset)
+        #button("PLAY AGAIN?", 400, 100, 150, 50, light_slat, bright_green, reset)
         button("EXIT", 400, 200, 150, 50, light_slat, dark_red, sys.exit())
+    pygame.display.update()
         
-
-
-
-
 
 def reset():
     global limbs
     global guesses
     global word
+    global wrong_guesses
 
     limbs = 0
     guesses = []
     wrong_guesses = []
     word = random_word()
+    print(word)
 
 
 word = random_word()
@@ -128,6 +127,7 @@ inGame = True
 print(word)
 while inGame:
     redraw_window()
+    finished_game()
     pygame.time.delay(10)
     press=pygame.key.get_pressed()
     for event in pygame.event.get():
@@ -138,23 +138,16 @@ while inGame:
                 if event.unicode not in word:
                     game_texts("The letter %s is not in the word" % event.unicode , 450, 230)
                     limbs += 1
-                    time.sleep(3)
+                    time.sleep(2)
                     if event.unicode not in wrong_guesses:
                         wrong_guesses += event.unicode
                     pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 600, 230))
                 if event.unicode in guesses:
                     game_texts("You already pressed it!", 450, 230)
-                    time.sleep(3)
+                    time.sleep(2)
                     pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 600, 230))
                 else:
                     guesses += event.unicode
             print(guesses)
-            time.sleep(2)
-            finished_game()
-
-
-
-    # gameDisplay.blit(word, (200, 300))
-            # button("PLAY AGAIN?", 400, 100, 150, 50, light_slat, bright_green, play)
-            # button("EXIT", 400, 200, 150, 50, light_slat, dark_red, exit)
-
+    button("EXIT", 400, 200, 150, 50, light_slat, dark_red, sys.exit())
+  
