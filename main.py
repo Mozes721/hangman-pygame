@@ -5,7 +5,7 @@ import time
 from constants import *
 pygame.init()
 pygame.font.init()
-
+ 
  
 gameDisplay=pygame.display.set_mode((h,w))
 word = None
