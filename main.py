@@ -7,7 +7,7 @@ pygame.font.init()
  
 gameDisplay=pygame.display.set_mode((h,w))
 word = None
-
+ 
 pygame.display.set_caption('Hangman')
 gameDisplay.fill(BOARDER)
 pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 650, 430))
