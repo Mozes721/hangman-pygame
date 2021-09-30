@@ -94,16 +94,18 @@ def finished_game():
         finish_text("You Won :)", 400, 150)
         time.sleep(2)
         pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 650, 430))
+        reset()
         #button("PLAY AGAIN?", 400, 100, 150, 50, light_slat, bright_green, reset)
-        button("EXIT", 400, 200, 150, 50, light_slat, dark_red, sys.exit())
+        #button("EXIT", 400, 200, 150, 50, light_slat, dark_red, sys.exit())
        
 
     if limbs == 6:
         finish_text("You Lost :(", 400, 150)
         time.sleep(2)
         pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 650, 430))
+        reset()
         #button("PLAY AGAIN?", 400, 100, 150, 50, light_slat, bright_green, reset)
-        button("EXIT", 400, 200, 150, 50, light_slat, dark_red, sys.exit())
+        #button("EXIT", 400, 200, 150, 50, light_slat, dark_red, sys.exit())
     pygame.display.update()
         
 
@@ -135,19 +137,17 @@ while inGame:
             pygame.quit()
         elif event.type == pygame.KEYDOWN:
             if event.key in range(pygame.K_a, pygame.K_z + 1):
-                if event.unicode not in word:
+                if event.unicode in guesses or event.unicode in wrong_guesses:
+                    game_texts("You already pressed it!", 450, 230)
+                    time.sleep(2)
+                    pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 600, 230))
+                elif event.unicode not in word:
                     game_texts("The letter %s is not in the word" % event.unicode , 450, 230)
                     limbs += 1
                     time.sleep(2)
                     if event.unicode not in wrong_guesses:
                         wrong_guesses += event.unicode
                     pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 600, 230))
-                if event.unicode in guesses:
-                    game_texts("You already pressed it!", 450, 230)
-                    time.sleep(2)
-                    pygame.draw.rect(gameDisplay, WHITEBOARD, pygame.Rect(22, 20, 600, 230))
                 else:
                     guesses += event.unicode
             print(guesses)
-    button("EXIT", 400, 200, 150, 50, light_slat, dark_red, sys.exit())
-  
